@@ -33,7 +33,7 @@ public class ContactosService {
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-            if ((contacto.getNombre() == nombre)) {
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
                 return true;
             }
         }
@@ -45,7 +45,7 @@ public class ContactosService {
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-            if (contacto.getNombre() == nombre) {
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
                 return contacto;
             }
         }
@@ -58,13 +58,22 @@ public class ContactosService {
         System.out.println("Contacto eliminado exitosamente");
     }
 
-    public Contactos modifyTelefono(String nombre) {
+    public Contactos modifyTelefono(String nombre, Long nuevo) {
        Contactos modify = buscarContacto(nombre);
-       Long nuevo = 1L;
        modify.setTelefono(nuevo);
         System.out.println("Contacto modificado");
        return  null;
 
+    }
+
+    public void espacioslibres() {
+        int espacio = agenda.size() ;
+        int x =  10 - espacio;
+        if (x != 0 ){
+            System.out.println("aun tienes " + x + " espacios");
+        }else  {
+            System.out.println("sin espacios");
+        }
     }
 
 }
