@@ -57,6 +57,16 @@ public class ContactosService {
         agenda.remove(eliminar);
         System.out.println("Contacto eliminado exitosamente");
     }
+
+    public Contactos modifyTelefono(String nombre) {
+       Contactos modify = buscarContacto(nombre);
+       Long nuevo = 1L;
+       modify.setTelefono(nuevo);
+        System.out.println("Contacto modificado");
+       return  null;
+
+    }
+
 }
 
 
