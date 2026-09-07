@@ -1,5 +1,6 @@
 package org.t2.service;
 
+import org.t2.exceptions.NotFoundException;
 import org.t2.model.Contactos;
 
 import java.util.ArrayList;
@@ -37,5 +38,17 @@ public class ContactosService {
             }
         }
         return false;
+
     }
+    public Contactos buscarContacto(String nombre){
+        Iterator<Contactos> contactoIterador = agenda.iterator();
+        while (contactoIterador.hasNext()){
+            Contactos contacto = contactoIterador.next();
+           if(contacto.getNombre() == nombre){
+               return contacto;
+           }
+        }
+        throw new NotFoundException("Contacto no encontrado");
+    }
+
 }
