@@ -39,5 +39,10 @@ public class AgendaMain {
             System.out.println(c);
         }
 
+        service.eliminarContacto("miguel Sanchez");
+        for (Contactos c : service.viewAgenda()){
+            System.out.println(c);
     }
+   }
 }
+

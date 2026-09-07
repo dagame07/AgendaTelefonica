@@ -11,7 +11,7 @@ public class ContactosService {
     ArrayList<Contactos> agenda = new ArrayList<>(10);
 
     public void addContacto(Contactos newContacto) {
-        if (agendaLLena()){
+        if (agendaLLena()) {
             System.out.println("Agenda llena, no se pueden agregar más contactos");
         } else if (existeContacto(newContacto.getNombre())) {
             System.out.println("Ya existe ese contacto");
@@ -31,24 +31,32 @@ public class ContactosService {
 
     public boolean existeContacto(String nombre) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
-        while (contactoIterador.hasNext()){
+        while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-            if ((contacto.getNombre() == nombre)){
+            if ((contacto.getNombre() == nombre)) {
                 return true;
             }
         }
         return false;
 
     }
-    public Contactos buscarContacto(String nombre){
+
+    public Contactos buscarContacto(String nombre) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
-        while (contactoIterador.hasNext()){
+        while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-           if(contacto.getNombre() == nombre){
-               return contacto;
-           }
+            if (contacto.getNombre() == nombre) {
+                return contacto;
+            }
         }
         throw new NotFoundException("Contacto no encontrado");
     }
 
+    public void eliminarContacto(String nombre) {
+        Contactos eliminar = buscarContacto(nombre);
+        agenda.remove(eliminar);
+        System.out.println("Contacto eliminado exitosamente");
+    }
 }
+
+
