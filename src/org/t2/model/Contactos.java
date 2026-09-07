@@ -2,10 +2,10 @@ package org.t2.model;
 
 public class Contactos {
     private String nombre;
-    private String telefono;
+    private Long telefono;
 
     // Constructor
-    public Contactos(String nombre, String telefono) {
+    public Contactos(String nombre, Long telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
     }
@@ -19,11 +19,11 @@ public class Contactos {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
