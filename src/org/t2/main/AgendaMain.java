@@ -29,16 +29,22 @@ public class AgendaMain {
                 case 1:
                     System.out.print("Nombre: ");
                     String nombre = sc.nextLine();
+                    System.out.print("Apellido: ");
+                    String apellido = sc.nextLine();
                     System.out.print("Teléfono: ");
                     Long telefono = sc.nextLong();
                     sc.nextLine();
-                    agenda.addContacto(new Contactos(nombre, telefono));
+                    agenda.addContacto(new Contactos(nombre, apellido, telefono));
                     break;
                 case 2:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
-                    if (agenda.existeContacto(nombre)) {
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    if (agenda.existeContacto(nombre, apellido)) {
                         System.out.println("Ya existe ese contacto");
+                    } else {
+                        System.out.println("No existe ese contacto");
                     }
                     break;
 
@@ -50,19 +56,25 @@ public class AgendaMain {
                 case 4:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
-                    System.out.println(agenda.buscarContacto(nombre));
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    System.out.println(agenda.buscarContacto(nombre, apellido));
                     break;
                 case 5:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
-                    agenda.eliminarContacto(nombre);
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    agenda.eliminarContacto(nombre, apellido);
                     break;
                 case 6:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
                     System.out.print("Teléfono nuevo: ");
                     telefono = sc.nextLong();
-                    agenda.modifyTelefono(nombre,telefono);
+                    agenda.modifyTelefono(nombre, apellido, telefono);
 
                     break;
                 case 7:

@@ -11,9 +11,11 @@ public class ContactosService {
     ArrayList<Contactos> agenda = new ArrayList<>(10);
 
     public void addContacto(Contactos newContacto) {
+        String name = newContacto.getNombre();
+        String apellido = newContacto.getApellido();
         if (agendaLLena()) {
             System.out.println("Agenda llena, no se pueden agregar más contactos");
-        } else if (existeContacto(newContacto.getNombre())) {
+        } else if (existeContacto(name, apellido)) {
             System.out.println("Ya existe ese contacto");
         } else {
             agenda.add(newContacto);
@@ -29,11 +31,12 @@ public class ContactosService {
         return agenda.size() >= 10;
     }
 
-    public boolean existeContacto(String nombre) {
+    public boolean existeContacto(String nombre, String apellido) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+            String fullName = nombre + " " + apellido;
+            if (contacto.fullName().equalsIgnoreCase(fullName)) {
                 return true;
             }
         }
@@ -41,25 +44,26 @@ public class ContactosService {
 
     }
 
-    public Contactos buscarContacto(String nombre) {
+    public Contactos buscarContacto(String nombre, String apellido) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
-            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+            String fullName = nombre + " " + apellido;
+            if (contacto.fullName().equalsIgnoreCase(fullName)) {
                 return contacto;
             }
         }
         throw new NotFoundException("Contacto no encontrado");
     }
 
-    public void eliminarContacto(String nombre) {
-        Contactos eliminar = buscarContacto(nombre);
+    public void eliminarContacto(String nombre, String apellido) {
+        Contactos eliminar = buscarContacto(nombre, apellido);
         agenda.remove(eliminar);
         System.out.println("Contacto eliminado exitosamente");
     }
 
-    public Contactos modifyTelefono(String nombre, Long nuevo) {
-       Contactos modify = buscarContacto(nombre);
+    public Contactos modifyTelefono(String nombre, String apellido, Long nuevo) {
+       Contactos modify = buscarContacto(nombre, apellido);
        modify.setTelefono(nuevo);
         System.out.println("Contacto modificado");
        return  null;
