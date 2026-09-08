@@ -10,6 +10,7 @@ import java.util.List;
 public class ContactosService {
     ArrayList<Contactos> agenda = new ArrayList<>(10);
 
+    // Trujillo
     public void addContacto(Contactos newContacto) {
         String name = newContacto.getNombre();
         String apellido = newContacto.getApellido();
@@ -23,14 +24,17 @@ public class ContactosService {
         }
     }
 
+    // Miguel
     public List<Contactos> viewAgenda() {
         return agenda;
     }
 
+    // Miguel
     public boolean agendaLLena() {
         return agenda.size() >= 10;
     }
 
+    // Denisse
     public boolean existeContacto(String nombre, String apellido) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
@@ -41,35 +45,37 @@ public class ContactosService {
             }
         }
         return false;
-
     }
 
+    // Ana Valeria
     public Contactos buscarContacto(String nombre, String apellido) {
         Iterator<Contactos> contactoIterador = agenda.iterator();
-        while (contactoIterador.hasNext()) {
-            Contactos contacto = contactoIterador.next();
-            String fullName = nombre + " " + apellido;
-            if (contacto.fullName().equalsIgnoreCase(fullName)) {
-                return contacto;
+            while (contactoIterador.hasNext()) {
+                Contactos contacto = contactoIterador.next();
+                String fullName = nombre + " " + apellido;
+                if (contacto.fullName().equalsIgnoreCase(fullName)) {
+                    return contacto;
+                }
             }
-        }
-        throw new NotFoundException("Contacto no encontrado");
+            throw new NotFoundException("Usuario no encontrado");
     }
 
+    // Miguel
     public void eliminarContacto(String nombre, String apellido) {
         Contactos eliminar = buscarContacto(nombre, apellido);
         agenda.remove(eliminar);
         System.out.println("Contacto eliminado exitosamente");
     }
 
+    // Vale
     public Contactos modifyTelefono(String nombre, String apellido, Long nuevo) {
        Contactos modify = buscarContacto(nombre, apellido);
        modify.setTelefono(nuevo);
         System.out.println("Contacto modificado");
        return  null;
-
     }
 
+    // Vale
     public void espacioslibres() {
         int espacio = agenda.size() ;
         int x =  10 - espacio;
