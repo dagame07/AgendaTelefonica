@@ -1,5 +1,6 @@
 package org.t2.main;
 
+import org.t2.exceptions.NotFoundException;
 import org.t2.model.Contactos;
 import org.t2.service.ContactosService;
 
@@ -58,23 +59,50 @@ public class AgendaMain {
                     nombre = sc.nextLine();
                     System.out.print("Apellido: ");
                     apellido = sc.nextLine();
-                    System.out.println(agenda.buscarContacto(nombre, apellido));
+                    //Evitar crasheos en caso de una excepicion
+                    try {
+                        System.out.println(agenda.buscarContacto(nombre, apellido));
+                    } catch (NotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 5:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
                     System.out.print("Apellido: ");
                     apellido = sc.nextLine();
-                    agenda.eliminarContacto(nombre, apellido);
+                    //Evitar crasheos en caso de una excepicion
+                    try {
+                        agenda.eliminarContacto(nombre, apellido);
+                    } catch (NotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 6:
                     System.out.print("Nombre: ");
                     nombre = sc.nextLine();
                     System.out.print("Apellido: ");
                     apellido = sc.nextLine();
-                    System.out.print("Teléfono nuevo: ");
-                    telefono = sc.nextLong();
-                    agenda.modifyTelefono(nombre, apellido, telefono);
+                    //Evitar crasheos en caso de una excepicion
+                    try {
+                        agenda.buscarContacto(nombre, apellido);
+                        System.out.print("Teléfono nuevo: ");
+                        telefono = sc.nextLong();
+                        sc.nextLine();
+                        agenda.modifyTelefono(nombre, apellido, telefono);
+                    } catch (NotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    /*try {
+                        Contactos contactoAModificar = agenda.buscarContacto(nombre, apellido);
+                        System.out.print("Teléfono nuevo: ");
+                        telefono = sc.nextLong();
+                        sc.nextLine();
+                        contactoAModificar.setTelefono(telefono);
+                        System.out.println("Contacto modificado");
+                    } catch (NotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }*/
 
                     break;
                 case 7:

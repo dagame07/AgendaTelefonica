@@ -13,9 +13,9 @@ public class Contactos {
     }
 
     // Getter y Setter
-    public String fullName() {
-        return nombre + " " + apellido;
-    }
+
+    //Concatena nombre + apellido — se usa en varias partes del servicio para comparar contactos.
+    public String fullName() { return nombre + " " + apellido;}
     public String getNombre() {
         return nombre;
     }
@@ -45,6 +45,7 @@ public class Contactos {
 
     @Override
     public String toString() {
+        //Para que los datos sean visibles en consola
         return "Contactos{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

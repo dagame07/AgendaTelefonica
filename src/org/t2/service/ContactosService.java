@@ -12,8 +12,10 @@ public class ContactosService {
 
     // Trujillo
     public void addContacto(Contactos newContacto) {
+        //Función para agregar contactos
         String name = newContacto.getNombre();
         String apellido = newContacto.getApellido();
+        //Valida que la agenda no este llena y que el contacto no exista aún
         if (agendaLLena()) {
             System.out.println("Agenda llena, no se pueden agregar más contactos");
         } else if (existeContacto(name, apellido)) {
@@ -25,17 +27,20 @@ public class ContactosService {
     }
 
     // Miguel
+    //Funcion para devolver la lista completa de agenda
     public List<Contactos> viewAgenda() {
         return agenda;
     }
 
     // Miguel
+    //Funcion para verificar la agenda llego a 10 contactos registrados
     public boolean agendaLLena() {
         return agenda.size() >= 10;
     }
 
     // Denisse
     public boolean existeContacto(String nombre, String apellido) {
+        //Con un iterador recorre la lista comparando el nombre completo, ignorando mayusculas y minusculas
         Iterator<Contactos> contactoIterador = agenda.iterator();
         while (contactoIterador.hasNext()) {
             Contactos contacto = contactoIterador.next();
@@ -49,6 +54,7 @@ public class ContactosService {
 
     // Ana Valeria
     public Contactos buscarContacto(String nombre, String apellido) {
+        //Con un iterador recorre la lista comparando el nombre completo, ignorando mayusculas y minusculas
         Iterator<Contactos> contactoIterador = agenda.iterator();
             while (contactoIterador.hasNext()) {
                 Contactos contacto = contactoIterador.next();
@@ -62,6 +68,7 @@ public class ContactosService {
 
     // Miguel
     public void eliminarContacto(String nombre, String apellido) {
+        //Función psra eliminar contacto, utiliza la función buscarContacto
         Contactos eliminar = buscarContacto(nombre, apellido);
         agenda.remove(eliminar);
         System.out.println("Contacto eliminado exitosamente");
@@ -69,14 +76,17 @@ public class ContactosService {
 
     // Vale
     public Contactos modifyTelefono(String nombre, String apellido, Long nuevo) {
+        //Fucnion para modificar el telefono de un contacto, busca el contacto y actualiza el telefono
        Contactos modify = buscarContacto(nombre, apellido);
        modify.setTelefono(nuevo);
         System.out.println("Contacto modificado");
-       return  null;
+        return modify;
+       //return  null; //Revisar
     }
 
     // Vale
     public void espacioslibres() {
+        //Funcion para verificar cuantos espacios libres quedan en la agenda
         int espacio = agenda.size() ;
         int x =  10 - espacio;
         if (x != 0 ){
