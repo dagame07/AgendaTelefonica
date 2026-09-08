@@ -26,7 +26,6 @@ public class AgendaMain {
             System.out.println("7. Espacios libres");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
-            System.out.println("********************************");
             opcion = sc.nextInt();
             sc.nextLine();
 
