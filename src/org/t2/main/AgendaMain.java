@@ -8,10 +8,13 @@ import java.util.Scanner;
 
 public class AgendaMain {
     public static void main(String[] args) {
+        //Se inicia el scanner
         Scanner sc = new Scanner(System.in);
+        //Llamamos la clase ContactosService
         ContactosService agenda = new ContactosService();
         int opcion;
 
+        //Iniciamos nuestro bucle, termina si el usuario teclea 0
         do {
             System.out.println("\n--- MENÚ AGENDA ---");
             System.out.println("1. Añadir contacto");
@@ -23,6 +26,7 @@ public class AgendaMain {
             System.out.println("7. Espacios libres");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
+            System.out.println("********************************");
             opcion = sc.nextInt();
             sc.nextLine();
 
@@ -85,6 +89,7 @@ public class AgendaMain {
                     apellido = sc.nextLine();
                     //Evitar crasheos en caso de una excepicion
                     try {
+                        //Busca en la lista si existe el contacto
                         agenda.buscarContacto(nombre, apellido);
                         System.out.print("Teléfono nuevo: ");
                         telefono = sc.nextLong();

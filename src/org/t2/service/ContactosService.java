@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ContactosService {
+    //Creacion de un Array, se limita manualmente a 10 contactos
     ArrayList<Contactos> agenda = new ArrayList<>(10);
 
     // Trujillo
@@ -48,8 +49,7 @@ public class ContactosService {
             if (contacto.fullName().equalsIgnoreCase(fullName)) {
                 return true;
             }
-        }
-        return false;
+        } return false;
     }
 
     // Ana Valeria
@@ -68,7 +68,7 @@ public class ContactosService {
 
     // Miguel
     public void eliminarContacto(String nombre, String apellido) {
-        //Función psra eliminar contacto, utiliza la función buscarContacto
+        //Función para eliminar contacto, utiliza la función buscarContacto
         Contactos eliminar = buscarContacto(nombre, apellido);
         agenda.remove(eliminar);
         System.out.println("Contacto eliminado exitosamente");
@@ -77,11 +77,10 @@ public class ContactosService {
     // Vale
     public Contactos modifyTelefono(String nombre, String apellido, Long nuevo) {
         //Fucnion para modificar el telefono de un contacto, busca el contacto y actualiza el telefono
-       Contactos modify = buscarContacto(nombre, apellido);
-       modify.setTelefono(nuevo);
+        Contactos modify = buscarContacto(nombre, apellido);
+        modify.setTelefono(nuevo);
         System.out.println("Contacto modificado");
         return modify;
-       //return  null; //Revisar
     }
 
     // Vale
